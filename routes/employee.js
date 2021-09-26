@@ -9,7 +9,7 @@ router.post("/add", (req, res) => {
     .then((employee) => {
       if (employee) {
         res.send({ status: 201, msg: "The employee already exists!" });
-        return new Promise(() => {});
+        // return new Promise(() => {});
       } else {
         return EmployeeModel.create({ ...req.body });
       }
@@ -22,10 +22,10 @@ router.post("/add", (req, res) => {
       res.send({ status: 201, msg: "Add employee error, please try again!" });
     });
 });
-// patch
+
+// update
 router.post("/edit", (req, res) => {
   const employee = req.body;
-  console.log(employee);
   EmployeeModel.findOneAndUpdate({ _id: employee._id }, employee)
     .then((pre) => {
       const data = Object.assign(pre, employee);
@@ -42,9 +42,7 @@ router.post("/edit", (req, res) => {
 
 // delete
 router.post("/delete", (req, res) => {
-  console.log("看看有没有成功 req.body:", req.body);
   const _id = req.body.id;
-  console.log("看看有没有成功 _id:", _id);
   EmployeeModel.findByIdAndDelete({ _id })
     .then(() => {
       console.log("res 看看", res);
@@ -57,7 +55,6 @@ router.post("/delete", (req, res) => {
 });
 // get all
 router.get("/list", (req, res) => {
-  console.log("req", req.body);
   EmployeeModel.find({})
     .then((employees) => {
       res.send({ status: 200, data: employees });

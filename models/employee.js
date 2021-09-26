@@ -13,7 +13,7 @@ const EmployeeSchema = new mongoose.Schema({
     require: true,
   },
   phone: {
-    type: String,
+    type: Number,
     require: true,
   },
   gender: {
