@@ -2,14 +2,14 @@ const express = require("express");
 
 const app = express();
 const mongoose = require("mongoose");
-const employeeRoute = require("./routes/employee");
+const cafeRoute = require("./routes/cafe");
 
 const port = 8000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/employee", employeeRoute);
+app.use("/", cafeRoute);
 mongoose
-  .connect("mongodb://localhost/zenika", { useNewUrlParser: true })
+  .connect("mongodb://localhost/zenika-backend", { useNewUrlParser: true })
   .then(() => {
     console.log("连接数据库成功!!!");
     app.listen(port, () => {

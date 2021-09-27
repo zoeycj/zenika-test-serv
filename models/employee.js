@@ -1,31 +1,24 @@
 const mongoose = require("mongoose");
+const { v4: uuidv4 } = require("uuid");
 const EmployeeSchema = new mongoose.Schema({
-  firstName: {
+  name: {
     type: String,
     require: true,
   },
-  lastName: {
+  cafe: {
     type: String,
     require: true,
   },
-  email: {
-    type: String,
-    require: true,
-  },
-  phone: {
+  days_worked: {
     type: Number,
     require: true,
   },
-  gender: {
+  id: {
     type: String,
-    require: true,
-  },
-  date: {
-    type: Date,
-    default: Date.now,
+    default: uuidv4(),
   },
 });
 
-const EmployeeModel = mongoose.model("employees", EmployeeSchema);
+const EmployeeModel = mongoose.model("employee", EmployeeSchema);
 
 module.exports = EmployeeModel;
